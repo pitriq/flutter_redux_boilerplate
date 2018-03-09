@@ -8,6 +8,7 @@ import 'package:flutter_redux_boilerplate/screens/login_screen.dart';
 import 'package:flutter_redux_boilerplate/screens/main_screen.dart';
 import 'package:flutter_redux_boilerplate/store/store.dart';
 import 'package:flutter_redux_boilerplate/models/app_state.dart';
+import 'package:flutter_redux_boilerplate/middleware/middleware.dart';
 
 void main() => runApp(new ReduxApp());
 
@@ -27,6 +28,7 @@ class ReduxApp extends StatelessWidget {
                     : kDefaultTheme,
             routes: <String, WidgetBuilder>{
                 '/': (BuildContext context) => new StoreBuilder<AppState>(
+                        onInit: (store) => persistor.load(store),
                         builder: (BuildContext context, store) => new LoadingScreen(),
                 ),
                 '/login': (BuildContext context) => new LoginScreen(),
