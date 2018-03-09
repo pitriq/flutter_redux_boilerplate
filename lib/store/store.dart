@@ -1,5 +1,4 @@
 import 'package:redux/redux.dart';
-import 'package:flutter/material.dart';
 
 import 'package:flutter_redux_boilerplate/reducers/app_reducer.dart';
 import 'package:flutter_redux_boilerplate/models/app_state.dart';
