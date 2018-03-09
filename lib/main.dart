@@ -29,7 +29,7 @@ class ReduxApp extends StatelessWidget {
             routes: <String, WidgetBuilder>{
                 '/': (BuildContext context) => new StoreBuilder<AppState>(
                         onInit: (store) {
-                            store.dispatch(rehydrateState);
+                            //store.dispatch(rehydrateState);
                         },
                         /* 
                         TODO: create a middleware to navigate on

@@ -6,6 +6,6 @@ import 'package:flutter_redux_boilerplate/middleware/persist_state_middleware.da
 // Set up middlewares
 List createMiddleware() => [
     thunkMiddleware,
+    persistStateMiddleware,
     new LoggingMiddleware.printer(),
-    persistStateMiddleware
 ];
