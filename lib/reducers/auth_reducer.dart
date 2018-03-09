@@ -1,7 +1,6 @@
 import 'package:redux/redux.dart';
 
 import 'package:flutter_redux_boilerplate/actions/auth_actions.dart';
-import 'package:flutter_redux_boilerplate/actions/persist_actions.dart';
 import 'package:flutter_redux_boilerplate/models/auth_state.dart';
 
 Reducer<AuthState> authReducer = combineTypedReducers([
@@ -9,7 +8,6 @@ Reducer<AuthState> authReducer = combineTypedReducers([
     new ReducerBinding<AuthState, UserLoginSuccess>(userLoginSuccessReducer),
     new ReducerBinding<AuthState, UserLoginFailure>(userLoginFailureReducer),
     new ReducerBinding<AuthState, UserLogout>(userLogoutReducer),
-    new ReducerBinding<AuthState, RehydrateState>(rehydrateStateReducer),
 ]);
 
 AuthState userLoginRequestReducer(AuthState auth, UserLoginRequest action) {
@@ -37,8 +35,4 @@ AuthState userLoginFailureReducer(AuthState auth, UserLoginFailure action) {
 
 AuthState userLogoutReducer(AuthState auth, UserLogout action) {
     return new AuthState();
-}
-
-AuthState rehydrateStateReducer(AuthState auth, RehydrateState action) {
-    return action.auth;
 }

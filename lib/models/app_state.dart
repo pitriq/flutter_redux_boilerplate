@@ -10,6 +10,27 @@ class AppState {
     AppState({AuthState auth, this.rehydrated = false}):
         auth = auth ?? new AuthState();
 
+    static AppState rehydrationJSON(dynamic json) {
+        //if (json)
+        return new AppState(
+            auth: new AuthState.fromJSON(json['auth'])
+        );
+    }
+
+    Map<String, dynamic> toJson() => {
+        'auth': auth.toJSON()
+    };
+
+    AppState copyWith({
+        bool rehydrated,
+        AuthState auth,
+    }) {
+        return new AppState(
+            rehydrated: rehydrated ?? this.rehydrated,
+            auth: auth ?? this.auth
+        );
+    }
+
     @override
     String toString() {
         return '''AppState{
