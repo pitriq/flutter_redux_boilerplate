@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:redux/redux.dart';
 
 import 'package:flutter_redux_boilerplate/styles/colors.dart';
-import 'package:flutter_redux_boilerplate/actions/persist_actions.dart';
 import 'package:flutter_redux_boilerplate/models/app_state.dart';
 
 class LoadingScreen extends StatelessWidget {
@@ -13,17 +12,14 @@ class LoadingScreen extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
+        print('built');
         return new StoreConnector(
-            onInit: (store) => store.dispatch(rehydrateState),
             converter: _ViewModel.fromStore,
             builder: (BuildContext context, vm) {
                 if (vm.rehydrated) {
-                    vm.isAuthenticated ?
-                    SchedulerBinding.instance.addPostFrameCallback((_) { 
-                        Navigator.of(context).pushReplacementNamed('/main');
-                    }) :
-                    SchedulerBinding.instance.addPostFrameCallback((_) { 
-                        Navigator.of(context).pushReplacementNamed('/login');
+                    SchedulerBinding.instance.addPostFrameCallback((_) {
+                        vm.isAuthenticated ? Navigator.of(context).pushReplacementNamed('/main')
+                        : Navigator.of(context).pushReplacementNamed('/login');
                     });
                 }
                 return new Scaffold(
