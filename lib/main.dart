@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux_persist_flutter/redux_persist_flutter.dart';
 
 import 'package:flutter_redux_boilerplate/presentation/platform_adaptive.dart';
 import 'package:flutter_redux_boilerplate/screens/loading_screen.dart';
 import 'package:flutter_redux_boilerplate/screens/login_screen.dart';
 import 'package:flutter_redux_boilerplate/screens/main_screen.dart';
 import 'package:flutter_redux_boilerplate/store/store.dart';
-import 'package:flutter_redux_boilerplate/models/app_state.dart';
 import 'package:flutter_redux_boilerplate/middleware/middleware.dart';
 
 void main() => runApp(new ReduxApp());
@@ -27,9 +27,9 @@ class ReduxApp extends StatelessWidget {
                     ? kIOSTheme
                     : kDefaultTheme,
             routes: <String, WidgetBuilder>{
-                '/': (BuildContext context) => new StoreBuilder<AppState>(
-                        onInit: (store) => persistor.load(store),
-                        builder: (BuildContext context, store) => new LoadingScreen(),
+                '/': (BuildContext context) => new PersistorGate(
+                    persistor: persistor,
+                    builder: (context) => new LoadingScreen(),
                 ),
                 '/login': (BuildContext context) => new LoginScreen(),
                 '/main': (BuildContext context) => new MainScreen()
