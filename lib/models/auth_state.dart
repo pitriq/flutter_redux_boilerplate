@@ -19,7 +19,7 @@ class AuthState {
         this.user,
     });
 
-    // allows to modify AuthState parameters while returning a copy of the unchanged parameters
+    // allows to modify AuthState parameters while cloning previous ones
     AuthState copyWith({
         bool isAuthenticated,
         bool isAuthenticating,
