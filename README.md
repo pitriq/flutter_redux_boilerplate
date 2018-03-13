@@ -42,9 +42,9 @@ AppState{
 **Presentation** widgets just receive and show props (usually coming from container widgets). 
 **Screens** are presentation widgets too, with the difference they hold other widgets to form screens. They're rendered in `main.dart` routes.
 
-**Styles** directory holds some Maps used to style your app consistently.
+**Styles** directory holds some Maps used to style the app consistently.
 
-`main.dart` is the entry point of the app. There you set up your StoreProvider and your routes.
+`main.dart` is the application's entry point. There you set up your StoreProvider and your routes.
 
 ## Inspiration
 
