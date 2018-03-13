@@ -10,7 +10,6 @@ class AppState {
         auth = auth ?? new AuthState();
 
     static AppState rehydrationJSON(dynamic json) {
-        //if (json)
         return new AppState(
             auth: new AuthState.fromJSON(json['auth'])
         );
