@@ -13,7 +13,7 @@ This boilerplate includes:
 * [redux_thunk.dart](https://pub.dartlang.org/packages/redux_thunk)
 * [redux_logging.dart](https://pub.dartlang.org/packages/redux_logging)
 * [redux_persist.dart](https://pub.dartlang.org/packages/redux_persist) & [redux_persist_flutter.dart](https://pub.dartlang.org/packages/redux_persist_flutter) to preserve the auth state between app executions
-* Bottom tab navigation!
+* Bottom navigation
 
 ## Inspiration
 
