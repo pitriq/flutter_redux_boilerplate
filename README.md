@@ -22,12 +22,12 @@ This project is splitted into a few directories:
 **Store** directory has only one file (`store.dart`), which is used to initialize the Store. It makes use of some middlewares, which are imported from **midddleware** directory. There, you will find `middleware.dart`. That file's purpose is to return an array of middlewares, as well as initializing a persistor (read [redux_persist.dart](https://pub.dartlang.org/packages/redux_persist) docs for more info).
 
 **Models** directory holds objects used across the app, such as State objects. 
-`app_state.dart` defines the Store's main State, wich has other State objects (like `auth_state.dart`) as it's properties. This way, you will be able to access to State just like you would in Redux.js. 
+`app_state.dart` defines the Store's main State, wich has other State objects (like `auth_state.dart`) as its properties. This way, you will be able to access to State just like you would in Redux.js. 
 
 ```dart
 AppState{
     auth: AuthState {
-        // AuthState props...
+        // AuthState props...   
     },
 }
 ```
