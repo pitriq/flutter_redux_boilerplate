@@ -13,7 +13,8 @@ dependencies:
   flutter_redux: ^0.3.5
   redux_logging: ^0.1.4
   redux_thunk: ^0.1.1
-  redux_persist: ^0.0.1
+  redux_persist_flutter: ^0.4.5
+  redux_persist: ^0.5.1
 
 dev_dependencies:
   flutter_test:
