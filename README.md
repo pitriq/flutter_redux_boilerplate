@@ -17,7 +17,7 @@ This boilerplate includes:
 
 ## Structure
 
-This project is splitted into a few directories:
+This project is split into a few directories:
 
 **Store** directory has only one file (`store.dart`), which is used to initialize the Store. It makes use of some middlewares, which are imported from **midddleware** directory. There, you will find `middleware.dart`. That file's purpose is to return an array of middlewares, as well as initializing a persistor (read [redux_persist.dart](https://pub.dartlang.org/packages/redux_persist) docs for more info).
 
