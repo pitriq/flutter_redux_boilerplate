@@ -8,11 +8,13 @@ class LoadingScreen extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        return new Scaffold(
-            body: new Center(
-                child: new CircularProgressIndicator(
-                    backgroundColor: colorStyles['gray'],
-                    strokeWidth: 2.0
+        return new MaterialApp(
+            home: new Scaffold(
+                body: new Center(
+                    child: new CircularProgressIndicator(
+                        backgroundColor: colorStyles['gray'],
+                        strokeWidth: 2.0
+                    ),
                 ),
             ),
         );
