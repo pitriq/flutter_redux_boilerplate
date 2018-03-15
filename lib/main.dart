@@ -19,22 +19,26 @@ class ReduxApp extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        return new StoreProvider(
-            store: store,
-            child: new MaterialApp(
-                title: 'ReduxApp',
-                theme: defaultTargetPlatform == TargetPlatform.iOS
-                    ? kIOSTheme
-                    : kDefaultTheme,
-            routes: <String, WidgetBuilder>{
-                '/': (BuildContext context) => new PersistorGate(
-                    persistor: persistor,
-                    builder: (context) => new LoadingScreen(),
-                ),
-                '/login': (BuildContext context) => new LoginScreen(),
-                '/main': (BuildContext context) => new MainScreen()
-            }
-            )
+        return new PersistorGate(
+            persistor: persistor,
+            loading: new LoadingScreen(),
+            builder: (context) => new StoreProvider(
+                store: store,
+                child: new MaterialApp(
+                    title: 'ReduxApp',
+                    theme: defaultTargetPlatform == TargetPlatform.iOS
+                        ? kIOSTheme
+                        : kDefaultTheme,
+                routes: <String, WidgetBuilder>{
+                    '/': (BuildContext context) => new StoreConnector( 
+                        converter: (store) => store.state.auth.isAuthenticated, 
+                        builder: (BuildContext context, isAuthenticated) => isAuthenticated ? new MainScreen() : new LoginScreen()
+                    ),
+                    '/login': (BuildContext context) => new LoginScreen(),
+                    '/main': (BuildContext context) => new MainScreen()
+                }
+                )
+            ),
         );
     }
 
