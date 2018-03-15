@@ -70,6 +70,35 @@ class PlatformAdaptiveButton extends StatelessWidget {
   }
 }
 
+// Bottom navigation bar that is Material on Android and Cupertino on iOS.
+class PlatformAdaptiveBottomBar extends StatelessWidget {
+  PlatformAdaptiveBottomBar({Key key, this.activeColor, this.currentIndex, this.onTap, this.items})
+      : super(key: key);
+  final Color activeColor;
+  final int currentIndex;
+  final Function onTap;
+  final List<BottomNavigationBarItem> items;
+
+  @override
+  Widget build(BuildContext context) {
+    if (Theme.of(context).platform == TargetPlatform.iOS) {
+      return new CupertinoTabBar(
+        activeColor: activeColor,
+        currentIndex: currentIndex,
+        onTap: onTap,
+        items: items,
+      );
+    } else {
+      return new BottomNavigationBar(
+        currentIndex: currentIndex,
+        type: BottomNavigationBarType.fixed,
+        onTap: onTap,
+        items: items,
+      );
+    }
+  }
+}
+
 class PlatformAdaptiveContainer extends StatelessWidget {
   final Widget child;
   final EdgeInsets margin;
