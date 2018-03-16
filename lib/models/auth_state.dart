@@ -15,8 +15,8 @@ class AuthState {
     AuthState({
         this.isAuthenticated = false,
         this.isAuthenticating = false,
-        this.error,
         this.user,
+        this.error,
     });
 
     // allows to modify AuthState parameters while cloning previous ones
@@ -38,7 +38,7 @@ class AuthState {
         isAuthenticated: json['isAuthenticated'],
         isAuthenticating: json['isAuthenticating'],
         error: json['error'],
-        user: new User.fromJSON(json['user']),
+        user: json['user'] == null ? null : new User.fromJSON(json['user']),
     );
 
     Map<String, dynamic> toJSON() => <String, dynamic>{
