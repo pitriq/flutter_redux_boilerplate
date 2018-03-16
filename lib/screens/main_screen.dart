@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_redux_boilerplate/presentation/platform_adaptive.dart';
-import 'package:flutter_redux_boilerplate/presentation/bottom_navigation_label.dart';
-import 'package:flutter_redux_boilerplate/screens/main_tabs/main_tabs.dart';
+import 'package:flutter_redux_boilerplate/styles/texts.dart';
+import 'package:flutter_redux_boilerplate/screens/main_tabs/news_tab.dart';
+import 'package:flutter_redux_boilerplate/screens/main_tabs/stats_tab.dart';
+import 'package:flutter_redux_boilerplate/screens/main_tabs/discover_tab.dart';
+import 'package:flutter_redux_boilerplate/screens/main_drawer.dart';
 
 
 class MainScreen extends StatefulWidget {
-  MainScreen({Key key, this.title}) : super(key: key);
-  final String title;
+  MainScreen({Key key}) : super(key: key);
 
   @override
-  State<MainScreen> createState() {
-    return new MainScreenState();
-  }
-}
+  State<MainScreen> createState() => new MainScreenState();
 
-class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
+}
+class MainScreenState extends State<MainScreen> {
+    
+    PageController _tabController;
+    String _title;
     int _index;
 
     @override
     void initState() {
         super.initState();
+        _tabController = new PageController();
+        _title = TabItems[0].title;
         _index = 0;
     }
 
@@ -29,40 +34,61 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
         return new Scaffold(
             
             appBar: new PlatformAdaptiveAppBar(
-                title: new Text(mainTabsTitles[MainTabs.values[_index]]),
+                title: new Text(_title),
                 platform: Theme.of(context).platform
             ),
             
-            bottomNavigationBar: new BottomNavigationBar(
+            bottomNavigationBar: new PlatformAdaptiveBottomBar(
                 currentIndex: _index,
-                type: BottomNavigationBarType.fixed,
-                onTap: (int _index) {
-                    setState(() {
-                        this._index = _index;
-                    });
-                },
-                items: MainTabs.values.map((MainTabs tab) {
+                onTap: onTap,
+                items: TabItems.map((TabItem item) {
                     return new BottomNavigationBarItem(
-                        icon: mainTabsIcons[tab],
-                        title: new BottomNavigationLabel(mainTabsTitles[tab], tab.index, _index)
+                        title: new Text(
+                            item.title,
+                            style: textStyles['bottom_label'],
+                        ),
+                        icon: new Icon(item.icon),
                     );
-                }).toList()
+                }).toList(),
             ),
-            
-            body: new Stack(
-                children: MainTabs.values.map((MainTabs tab) {
-                    return new Offstage(
-                        offstage: _index != tab.index,
-                        child: new TickerMode(
-                            enabled: _index == tab.index,
-                            child: new Material(
-                                child: mainTabsWidgets[tab],
-                            ),
-                        )
-                    );
-                }).toList()
-            )
 
+            body: new PageView(
+                controller: _tabController,
+                onPageChanged: onTabChanged,
+                children: <Widget>[
+                    new NewsTab(),
+                    new StatsTab(),
+                    new DiscoverTab()
+                ],
+            ),
+
+            drawer: new MainDrawer(),
         );
     }
+
+    void onTap(int tab){
+        _tabController.jumpToPage(tab);
+    }
+
+    void onTabChanged(int tab) {
+        setState((){
+            this._index = tab;
+        });
+        
+        this._title = TabItems[tab].title;
+    }
+
 }
+
+class TabItem {
+    final String title;
+    final IconData icon;
+
+    const TabItem({ this.title, this.icon });
+}
+
+const List<TabItem> TabItems = const <TabItem>[
+    const TabItem(title: 'News', icon: Icons.assignment),
+    const TabItem(title: 'Statistics', icon: Icons.timeline),
+    const TabItem(title: 'Discover', icon: Icons.group_work)
+];
