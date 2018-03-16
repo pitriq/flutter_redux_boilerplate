@@ -25,46 +25,47 @@ class _LoginFormState extends State<LoginForm> {
         }
     }
 
-  @override
-  Widget build(BuildContext context) {
-    return new Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: new Form(
-          key: formKey,
-          child: new Column(
-                children: [
-                new TextFormField(
-                    decoration: new InputDecoration(labelText: 'Username'),
-                    validator: (val) =>
-                        val.isEmpty ? 'Please enter your username.' : null,
-                    onSaved: (val) => _username = val,
-                ),
-                new TextFormField(
-                    decoration: new InputDecoration(labelText: 'Password'),
-                    validator: (val) =>
-                        val.isEmpty ? 'Please enter your password.' : null,
-                    onSaved: (val) => _password = val,
-                    obscureText: true,
-                ),
-                new StoreConnector<AppState, Function>(
-                    converter: (Store<AppState> store) {
-                        return (BuildContext context, String username, String password) => 
-                            store.dispatch(login(context, username, password));
-                    },
-                    builder: (BuildContext context, Function loginAction) {
-                        return new PlatformAdaptiveButton(
-                            onPressed:() {
-                                _submit();
-                                loginAction(context, _username, _password);
-                            },
-                            icon: new Icon(Icons.done),
-                            child: new Text('Log In'),
-                        );
-                    }
-                )
-                ],
-            ),
-            ),
+    @override
+    Widget build(BuildContext context) {
+        return new StoreConnector<AppState, Function>(
+            converter: (Store<AppState> store) {
+                return (BuildContext context, String username, String password) => 
+                    store.dispatch(login(context, username, password));
+            },
+            builder: (BuildContext context, Function loginAction) {
+                return new Form(
+                    key: formKey,
+                    child: new Column(
+                        children: [
+                            new TextFormField(
+                                decoration: new InputDecoration(labelText: 'Username'),
+                                validator: (val) =>
+                                    val.isEmpty ? 'Please enter your username.' : null,
+                                onSaved: (val) => _username = val,
+                            ),
+                            new TextFormField(
+                                decoration: new InputDecoration(labelText: 'Password'),
+                                validator: (val) =>
+                                    val.isEmpty ? 'Please enter your password.' : null,
+                                onSaved: (val) => _password = val,
+                                obscureText: true,
+                            ),
+                            new Padding(
+                                padding: new EdgeInsets.only(top: 20.0),
+                                child: new PlatformAdaptiveButton(
+                                    onPressed:() {
+                                        _submit();
+                                        loginAction(context, _username, _password);
+                                    },
+                                    icon: new Icon(Icons.done),
+                                    child: new Text('Log In'),
+                                ),
+                            )
+                        ],
+                    ),
+                );
+            }
         );
-  }
+    }
+
 }

@@ -9,11 +9,9 @@ class AppState {
     AppState({AuthState auth}):
         auth = auth ?? new AuthState();
 
-    static AppState rehydrationJSON(dynamic json) {
-        return new AppState(
-            auth: new AuthState.fromJSON(json['auth'])
-        );
-    }
+    static AppState rehydrationJSON(dynamic json) => new AppState(
+        auth: new AuthState.fromJSON(json['auth'])
+    );
 
     Map<String, dynamic> toJson() => {
         'auth': auth.toJSON()

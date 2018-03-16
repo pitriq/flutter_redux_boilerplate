@@ -21,13 +21,20 @@ class UserLoginFailure {
 class UserLogout {}
 
 final login = (BuildContext context, String username, String password) {
-    return (Store<AppState> store) async {
+    return (Store<AppState> store) {
         store.dispatch(new UserLoginRequest());
         if (username == 'asd' && password == 'asd') {
             store.dispatch(new UserLoginSuccess(new User('placeholder_token', 'placeholder_id')));
-            Navigator.of(context).pushReplacementNamed('/main');
+            Navigator.of(context).pushNamedAndRemoveUntil('/main', (_) => false);
         } else {
             store.dispatch(new UserLoginFailure('Username or password were incorrect.'));
         }
+    };
+};
+
+final logout = (BuildContext context) {
+    return (Store<AppState> store) {
+        store.dispatch(new UserLogout());
+        Navigator.of(context).pushNamedAndRemoveUntil('/login', (_) => false);
     };
 };
