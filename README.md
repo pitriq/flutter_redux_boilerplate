@@ -14,6 +14,7 @@ This boilerplate includes:
 * [redux_logging.dart](https://pub.dartlang.org/packages/redux_logging)
 * [redux_persist.dart](https://pub.dartlang.org/packages/redux_persist) & [redux_persist_flutter.dart](https://pub.dartlang.org/packages/redux_persist_flutter) to preserve the auth state between app executions
 * Bottom navigation
+* Drawer
 
 ## Structure
 
@@ -48,7 +49,8 @@ AppState{
 
 ## Inspiration
 
-This project has been inspired by this delightful projects:
+This has been inspired by this delightful projects:
 
 * [flutter_architecture_samples](https://github.com/brianegan/flutter_architecture_samples/blob/master/example/redux) by brianegan
 * [memechat](https://github.com/efortuna/memechat/tree/master) by the boys at Google
+* [flutterstarter](https://github.com/felipecarvalho/flutterstarter) by felipecarvalho
