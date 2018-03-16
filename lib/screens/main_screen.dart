@@ -5,6 +5,7 @@ import 'package:flutter_redux_boilerplate/styles/texts.dart';
 import 'package:flutter_redux_boilerplate/screens/main_tabs/news_tab.dart';
 import 'package:flutter_redux_boilerplate/screens/main_tabs/stats_tab.dart';
 import 'package:flutter_redux_boilerplate/screens/main_tabs/discover_tab.dart';
+import 'package:flutter_redux_boilerplate/screens/main_drawer.dart';
 
 
 class MainScreen extends StatefulWidget {
@@ -61,7 +62,7 @@ class MainScreenState extends State<MainScreen> {
                 ],
             ),
 
-
+            drawer: new MainDrawer(),
         );
     }
 
