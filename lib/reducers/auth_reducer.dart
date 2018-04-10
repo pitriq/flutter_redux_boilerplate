@@ -3,11 +3,11 @@ import 'package:redux/redux.dart';
 import 'package:flutter_redux_boilerplate/actions/auth_actions.dart';
 import 'package:flutter_redux_boilerplate/models/auth_state.dart';
 
-Reducer<AuthState> authReducer = combineTypedReducers([
-    new ReducerBinding<AuthState, UserLoginRequest>(userLoginRequestReducer),
-    new ReducerBinding<AuthState, UserLoginSuccess>(userLoginSuccessReducer),
-    new ReducerBinding<AuthState, UserLoginFailure>(userLoginFailureReducer),
-    new ReducerBinding<AuthState, UserLogout>(userLogoutReducer),
+Reducer<AuthState> authReducer = combineReducers([
+    new TypedReducer<AuthState, UserLoginRequest>(userLoginRequestReducer),
+    new TypedReducer<AuthState, UserLoginSuccess>(userLoginSuccessReducer),
+    new TypedReducer<AuthState, UserLoginFailure>(userLoginFailureReducer),
+    new TypedReducer<AuthState, UserLogout>(userLogoutReducer),
 ]);
 
 AuthState userLoginRequestReducer(AuthState auth, UserLoginRequest action) {
