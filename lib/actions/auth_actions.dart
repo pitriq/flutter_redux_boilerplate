@@ -20,7 +20,7 @@ class UserLoginFailure {
 
 class UserLogout {}
 
-final login = (BuildContext context, String username, String password) {
+final Function login = (BuildContext context, String username, String password) {
     return (Store<AppState> store) {
         store.dispatch(new UserLoginRequest());
         if (username == 'asd' && password == 'asd') {
@@ -32,7 +32,7 @@ final login = (BuildContext context, String username, String password) {
     };
 };
 
-final logout = (BuildContext context) {
+final Function logout = (BuildContext context) {
     return (Store<AppState> store) {
         store.dispatch(new UserLogout());
         Navigator.of(context).pushNamedAndRemoveUntil('/login', (_) => false);

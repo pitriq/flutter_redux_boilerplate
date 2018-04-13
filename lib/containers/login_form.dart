@@ -27,12 +27,12 @@ class _LoginFormState extends State<LoginForm> {
 
     @override
     Widget build(BuildContext context) {
-        return new StoreConnector<AppState, Function>(
+        return new StoreConnector<AppState, dynamic>(
             converter: (Store<AppState> store) {
                 return (BuildContext context, String username, String password) => 
                     store.dispatch(login(context, username, password));
             },
-            builder: (BuildContext context, Function loginAction) {
+            builder: (BuildContext context, loginAction) {
                 return new Form(
                     key: formKey,
                     child: new Column(

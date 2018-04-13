@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 
 import 'package:flutter_redux_boilerplate/styles/colors.dart';
 import 'package:flutter_redux_boilerplate/actions/auth_actions.dart';
+import 'package:flutter_redux_boilerplate/models/app_state.dart';
 
 class MainDrawer extends StatelessWidget {
     
@@ -10,7 +11,7 @@ class MainDrawer extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        return new StoreConnector(
+        return new StoreConnector<AppState, dynamic>(
             converter: (store) => (BuildContext context) { store.dispatch(logout(context)); },
             builder: (BuildContext context, logout) => new Drawer(
                 child: new ListView(

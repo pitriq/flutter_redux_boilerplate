@@ -9,6 +9,7 @@ import 'package:flutter_redux_boilerplate/screens/login_screen.dart';
 import 'package:flutter_redux_boilerplate/screens/main_screen.dart';
 import 'package:flutter_redux_boilerplate/store/store.dart';
 import 'package:flutter_redux_boilerplate/middleware/middleware.dart';
+import 'package:flutter_redux_boilerplate/models/app_state.dart';
 
 void main() => runApp(new ReduxApp());
 
@@ -22,7 +23,7 @@ class ReduxApp extends StatelessWidget {
         return new PersistorGate(
             persistor: persistor,
             loading: new LoadingScreen(),
-            builder: (context) => new StoreProvider(
+            builder: (context) => new StoreProvider<AppState>(
                 store: store,
                 child: new MaterialApp(
                     title: 'ReduxApp',
@@ -30,7 +31,7 @@ class ReduxApp extends StatelessWidget {
                         ? kIOSTheme
                         : kDefaultTheme,
                 routes: <String, WidgetBuilder>{
-                    '/': (BuildContext context) => new StoreConnector( 
+                    '/': (BuildContext context) => new StoreConnector<AppState, dynamic>( 
                         converter: (store) => store.state.auth.isAuthenticated, 
                         builder: (BuildContext context, isAuthenticated) => isAuthenticated ? new MainScreen() : new LoginScreen()
                     ),
