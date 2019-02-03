@@ -11,14 +11,14 @@ Reducer<AuthState> authReducer = combineReducers([
 ]);
 
 AuthState userLoginRequestReducer(AuthState auth, UserLoginRequest action) {
-    return new AuthState().copyWith(
+    return auth.copyWith(
         isAuthenticated: false,
         isAuthenticating: true,
     );
 }
 
 AuthState userLoginSuccessReducer(AuthState auth, UserLoginSuccess action) {
-    return new AuthState().copyWith(
+    return auth.copyWith(
         isAuthenticated: true,
         isAuthenticating: false,
         user: action.user
@@ -26,7 +26,7 @@ AuthState userLoginSuccessReducer(AuthState auth, UserLoginSuccess action) {
 }
 
 AuthState userLoginFailureReducer(AuthState auth, UserLoginFailure action) {
-    return new AuthState().copyWith(
+    return auth.copyWith(
         isAuthenticated: false,
         isAuthenticating: false,
         error: action.error
