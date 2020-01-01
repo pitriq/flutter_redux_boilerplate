@@ -51,6 +51,6 @@ AppState{
 
 This has been inspired by this delightful projects:
 
-* [flutter_architecture_samples](https://github.com/brianegan/flutter_architecture_samples/blob/master/example/redux) by brianegan
+* [flutter_architecture_samples](https://github.com/brianegan/flutter_architecture_samples/tree/master/redux) by brianegan
 * [memechat](https://github.com/efortuna/memechat/tree/master) by the boys at Google
 * [flutterstarter](https://github.com/felipecarvalho/flutterstarter) by felipecarvalho
